@@ -15,5 +15,10 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181?client=zkclient" />
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="demoService" interface="com.csy.dubbo.provider.DemoService" />
+    <dubbo:reference id="demoService" interface="com.csy.dubbo.provider.DemoService" timeout="20000">
+        <dubbo:method name="sayHello" async="true"/>
+    </dubbo:reference>
+
+    <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.DemoServiceV2" timeout="20000"/>
+
 </beans>
