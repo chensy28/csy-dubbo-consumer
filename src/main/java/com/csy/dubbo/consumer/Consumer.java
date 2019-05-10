@@ -16,7 +16,7 @@ public class Consumer {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]
                 {"classpath:consumer.xml"});
         context.start();
-        DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
+        DemoService demoService = (DemoService) context.getBean("demoService"); // 获取远程服务代理
 
         //TODO dubbo各版本的异步调用 待解决
 //        String hello = demoService.sayHello("world"); // 执行远程方法
