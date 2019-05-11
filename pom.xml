@@ -8,6 +8,7 @@
     <artifactId>consumer.demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- TODO 为啥maven指定了ali_setting.xml 还是访问的setting.xml的内容，家里还是访问公司nexus -->
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
