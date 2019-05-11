@@ -16,9 +16,10 @@
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
     <dubbo:reference id="demoService" interface="com.csy.dubbo.provider.DemoService" timeout="20000">
-        <dubbo:method name="sayHello" async="true"/>
+        <dubbo:method name="sayHello" async="true"/>  <!-- 如果方法没有配置异步方法，则future为空 -->
     </dubbo:reference>
 
+    <!-- 异步同步是针对方法级的，一个接口中可以既包含同步方法和异步方法 -->
     <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.DemoServiceV2" timeout="20000"/>
 
 </beans>

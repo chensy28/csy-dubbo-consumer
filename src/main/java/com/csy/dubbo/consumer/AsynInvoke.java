@@ -45,6 +45,7 @@ public class AsynInvoke {
         // 获取上下文中的future，需要紧跟异步调用的service
         Future<String> future = RpcContext.getContext().getFuture();
 
+        System.out.println(demoService.sayHaHa("yy"));
         DemoServiceV2 demoServiceV2 = (DemoServiceV2) context.getBean("demoServiceV2");
         System.out.println(demoServiceV2.sayHelloV2("testV2"));
 
