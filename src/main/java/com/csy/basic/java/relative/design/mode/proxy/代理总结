@@ -20,3 +20,13 @@ https://segmentfault.com/a/1190000011291179
 
 JDK自带的Proxy+InvocationHandler
 Cglib通过工具Enhancer创建代理对象，并实现MethodInterceptor接口
+
+
+从JVM中dump出动态代理生成的class
+https://segmentfault.com/a/1190000011608393
+
+openjdk的jhsdb工具
+https://cloud.tencent.com/developer/article/1407578
+
+HSDB就是HotSpot Debugger的简称
+sa-jdi.jar中的sa的全称为Serviceability Agent，它之前是sun公司提供的一个用于协助调试HotSpot的组件，而HSDB便是使用Serviceability Agent来实现的

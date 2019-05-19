@@ -5,7 +5,7 @@ package com.csy.basic.java.relative.design.mode.proxy.cglib;
  * @date 2019-05-18 12:36
  */
 public class TestProxy {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //目标对象
         UserDao target = new UserDao();
         System.out.println(target.getClass());
@@ -14,6 +14,7 @@ public class TestProxy {
         System.out.println(proxy.getClass());
         //执行代理对象方法
         proxy.save();
+        System.in.read();
     }
 
     /**
@@ -29,5 +30,8 @@ public class TestProxy {
      *
      * 使用动态代理的对象必须实现一个或多个接口
      * 使用cglib代理的对象则无需实现接口，达到代理类无侵入。
+     *
+     * Cglib生成的代理类
+     * class com.csy.basic.java.relative.design.mode.proxy.cglib.UserDao$$EnhancerByCGLIB$$be25ec98 @0x00000007c0073f88
      */
 }

@@ -1,0 +1,20 @@
+按流程实践、流程中涉及的技术和组件要熟练掌握，可以发散关联学习，但一定要回归实现最初的目标
+
+NO：1
+开始：19/5/18
+目标：实现dubbo异步调用，future、completableFuture
+关联技术：future -> thread使用 -> 代理模式（静态代理、动态代理、Cglib）
+查看代理类 -> idea安装visualVM
+
+------问题汇总-------
+1：遇到问题：总是配置不上visualVM，
+解决方案：一开始没指定jdk目录，后面又因为visualVM指定不对，需要两者都制定好
+
+2.使用HSDB连接不上端口，报incorrect pid or lack of privileges
+解决方案：该错误表明pid填写错误，或者没有权限
+
+感悟：1）尝试搜索英文，不一定全看完，提取里面的思路线索
+     2）出现问题，要逐步解决，一些貌似没关联的步骤，但其实是有关联的，比如我先把mac的root账号密码找回，并能使用，然后就能使用HSDB
+
+3.动态代理类目前可以通过HSDB可视化界面查看，但是通过sd-jdi.jar，以及dumpclass导不下来 (工具暂缓)
+https://blog.csdn.net/hengyunabc/article/details/51106980  从java进程里dump出类的class文件的小工具--dumpclass
