@@ -1,0 +1,39 @@
+Thread中start()与run()区别
+https://www.jianshu.com/p/9baa7baf233d
+
+1.start() 可以启动一个新线程，一个线程不能重复调用start()
+2.同一个线程可以多次调用run()
+3.start()中的run代码可以不执行完就继续执行下面的代码，即进行了线程切换。直接调用run方法必须等待其代码全部执行完才能继续执行下面的代码。
+4.start() 实现了多线程，run()没有实现多线程。
+
+Java多线程的调度策略
+https://blog.csdn.net/wangyangzhizhou/article/details/41122385
+
+在Java多线程环境中，为保证所有线程的执行能按照一定的规则执行，JVM实现了一个线程调度器，它定义了线程调度的策略，对于CPU运算的分配都进行了规定，
+按照这些特定的机制为多个线程分配CPU的使用权
+
+Java 线程调度
+https://www.jianshu.com/p/ca7e819ed407
+
+Java 虚拟机的一项任务就是负责线程的调度，线程调度是指按照特定机制为多个线程分配CPU的使用权。
+有两种调度模型：分时调度模型和抢占式调度模型。
+
+分时调度模型是指让所有的线程轮流获得 cpu 的使用权，并且平均分配每个线程占用的 CPU 的时间片这个也比较好理解。
+Java 虚拟机采用抢占式调度模型，是指优先让可运行池中优先级高的线程占用 CPU，如果可运行池中的线程优先级相同，那么就随机选择一个线程，
+使其占用 CPU。处于运行状态的线程会一直运行，直至它不得不放弃 CPU。
+
+
+Java Runnable与Callable区别
+https://www.cnblogs.com/kaituorensheng/p/9502968.html
+
+相同点
+都是接口
+都可以编写多线程程序
+都采用Thread.start()启动线程
+
+不同点
+Runnable没有返回值；Callable可以返回执行结果，是个泛型，和Future、FutureTask配合可以用来获取异步执行的结果
+Callable接口的call()方法允许抛出异常；Runnable的run()方法异常只能在内部消化，不能往上继续抛
+注：Callalbe接口支持返回执行结果，需要调用FutureTask.get()得到，此方法会阻塞主进程的继续往下执行，如果不调用不会阻塞
+
+FutureTask 该类提供了一个Future的基本实现 ，具有启动和取消计算的方法

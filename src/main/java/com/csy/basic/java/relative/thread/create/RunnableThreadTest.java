@@ -16,6 +16,7 @@ public class RunnableThreadTest implements Runnable {
         for (int i = 0; i < 100; i++) {
             System.out.println(Thread.currentThread().getName() + " " + i);
             if (i == 20) {
+                //使用了静态代理模式，Thread是代理对象，Runnabale是目标对象
                 RunnableThreadTest rtt = new RunnableThreadTest();
                 new Thread(rtt, "新线程1").start();
                 new Thread(rtt, "新线程2").start();
@@ -27,8 +28,6 @@ public class RunnableThreadTest implements Runnable {
     /**
      * 设计模式：JDK静态代理之Thread/Runnable
      * https://blog.csdn.net/zhangzeyuaaa/article/details/41869221
-     *
-     *
      */
 
 }
