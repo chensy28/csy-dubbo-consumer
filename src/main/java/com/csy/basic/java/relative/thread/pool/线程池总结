@@ -1,0 +1,59 @@
+深入理解 Java 线程池：ThreadPoolExecutor
+https://juejin.im/entry/58fada5d570c350058d3aaad
+
+Java 四种线程池的用法分析
+https://blog.csdn.net/u011974987/article/details/51027795
+
+java线程池使用
+https://www.jianshu.com/p/edd7cb4eafa0
+
+Executor
+执行提交的对象Runnable任务。 该界面提供了一种将任务提交从每个任务的运行机制分解的方式，包括线程使用，调度等的Executor 。通常使用Executor而不是显式创建线程
+void execute(Runnable command)
+在将来的某个时间执行给定的命令。 该命令可以在一个新线程，一个合并的线程中或在调用线程中执行，由Executor实现。
+
+并发新特性—Executor 框架与线程池
+https://wiki.jikexueyuan.com/project/java-concurrency/executor.html
+
+Executor通过该框架来控制线程的启动、执行和关闭，可以简化并发编程的操作
+通过 Executor 来启动线程比使用 Thread 的 start 方法更好，除了更易管理，效率更好（用线程池实现，节约开销）外，还有关键的一点：有助于避免 this
+逃逸问题——如果我们在构造器中启动一个线程，因为另一个任务可能会在构造器结束之前开始执行，此时可能会访问到初始化了一半的对象用 Executor 在构造器中。
+
+Executors 提供了一系列工厂方法用于创先线程池，返回的线程池都实现了 ExecutorService 接口。
+
+
+线程池的作用：线程池就是限制系统中使用线程的数量以及更好的使用线程
+
+为什么要用线程池:
+  减少线程创建和销毁的次数，使线程可以多次复用
+  可以根据系统情况，调整线程的数量。防止创建过多的线程，消耗过多的内存（每个线程1M左右）
+
+据系统的运行情况，可以自动或手动设置线程数量，达到运行的最佳效果：配置少了，将影响系统的执行效率，配置多了，又会浪费系统的资源，所以需要要用线程池进行分配
+
+Java里面线程池的顶级接口是Executor，但是严格意义上讲Executor并不是一个线程池，而只是一个执行线程的工具。真正的线程池接口是ExecutorService。
+Executors类，提供了一系列工厂方法用于创先线程池，返回的线程池都实现了ExecutorService接口。
+
+
+程序员被敦促使用更方便的Executors工厂方法Executors.newCachedThreadPool() （无限线程池，具有自动线程回收），
+Executors.newFixedThreadPool(int) （固定大小的线程池）
+和Executors.newSingleThreadExecutor() （单个后台线程），可以预先配置最常用的使用场景设置
+
+手动配置和调优此类时，请使用以下指南：
+ThreadPoolExecutor将自动调整池大小
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue<Runnable> workQueue)
+参数
+corePoolSize - 即使空闲时仍保留在池中的线程数，除非设置 allowCoreThreadTimeOut
+maximumPoolSize - 池中允许的最大线程数
+keepAliveTime - 当线程数大于核心时，这是多余的空闲线程在终止之前等待新任务的最大时间。
+unit - keepAliveTime参数的时间单位
+workQueue - 在执行任务之前用于保存任务的队列。 该队列将仅保存execute方法提交的Runnable任务。
+
+
+深入理解java线程池—ThreadPoolExecutor
+https://www.jianshu.com/p/ade771d2c9c0
+
+
