@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Producer extends Thread {
 
-    List<Message> msgList = new ArrayList<>();
+    List<Message> msgList = new ArrayList<Message>();
 
     //  Object的wait与notify/notifyAll的时候，必须保证调用代码对该Object是同步的，也就是说必须在作用等同于synchronized(obj){......}的内部
     //  才能够去调用obj的wait与notify/notifyAll三个方法

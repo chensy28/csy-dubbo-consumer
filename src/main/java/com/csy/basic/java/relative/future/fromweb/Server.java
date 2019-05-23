@@ -6,7 +6,7 @@ package com.csy.basic.java.relative.future.fromweb;
  */
 public class Server {
     public FutureData<String> getString() {
-        final FutureData<String> data = new FutureData<>();
+        final FutureData<String> data = new FutureData<String>();
         new Thread(new Runnable() {
             @Override
             public void run() {
