@@ -60,6 +60,10 @@ public class HttpClientUtil {
 
     static {
 
+        /**
+         * Netty使用JSSE实现SSLSocket通信
+         * https://segmentfault.com/a/1190000010054860
+         */
         try {
             //System.out.println("初始化HttpClientTest~~~开始");
             SSLContextBuilder builder = new SSLContextBuilder();

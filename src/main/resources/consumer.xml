@@ -20,6 +20,8 @@
     </dubbo:reference>
 
     <!-- 异步同步是针对方法级的，一个接口中可以既包含同步方法和异步方法 -->
-    <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.DemoServiceV2" timeout="20000"/>
+    <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.DemoServiceV2" timeout="4000" retries="2">
+        <!--<dubbo:method name="sayHelloV2" timeout="2778"/>-->
+    </dubbo:reference>
 
 </beans>
