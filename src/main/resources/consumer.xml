@@ -10,18 +10,30 @@
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
     <dubbo:application name="consumer-of-helloworld-app"  />
 
+    <!-- TODO 没有生效 -->
+    <dubbo:consumer check="true"/>
+
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
     <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181?client=zkclient" />
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="demoService" interface="com.csy.dubbo.provider.DemoService" timeout="20000">
+    <dubbo:reference id="demoService" interface="com.csy.dubbo.provider.xml.test.DemoService" timeout="20000">
         <dubbo:method name="sayHello" async="true"/>  <!-- 如果方法没有配置异步方法，则future为空 -->
     </dubbo:reference>
 
     <!-- 异步同步是针对方法级的，一个接口中可以既包含同步方法和异步方法 -->
-    <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.DemoServiceV2" timeout="4000" retries="2">
+    <dubbo:reference id="demoServiceV2" interface="com.csy.dubbo.provider.xml.test.DemoServiceV2" check="true" timeout="4000" retries="2">
         <!--<dubbo:method name="sayHelloV2" timeout="2778"/>-->
     </dubbo:reference>
+
+    <!--
+        启动时检查：检查依赖的服务是否可用，不可用时抛出异常
+        使用场景：1）check=true，及时发现问题，阻止spring初始化
+                2）check=false，不关心的服务；循环依赖的服务，必须有一方先启动；spring是懒加载的
+     -->
+    <dubbo:reference id="apiDemo" interface="com.csy.dubbo.provider.api.test.ApiDemo"/>
+
+
 
 </beans>

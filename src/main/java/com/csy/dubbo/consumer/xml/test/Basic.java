@@ -1,7 +1,6 @@
-package com.csy.dubbo.consumer;
+package com.csy.dubbo.consumer.xml.test;
 
-import com.csy.dubbo.provider.DemoService;
-import com.csy.dubbo.provider.DemoServiceV2;
+import com.csy.dubbo.provider.xml.test.DemoServiceV2;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
