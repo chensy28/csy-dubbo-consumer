@@ -1,4 +1,4 @@
-package com.csy.basic.java.relative.network.httpclient;
+package com.csy.basic.java.relative.network.http;
 
 import java.io.File;
 import java.io.IOException;
