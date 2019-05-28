@@ -11,31 +11,34 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2019-05-27 16:59
  */
 
-public class CountDownLatchTest1 implements Runnable{
+public class CountDownLatchTest1 implements Runnable {
     final AtomicInteger number = new AtomicInteger();
     volatile boolean bol = false;
+    private static int num = 0;
 
     @Override
     public void run() {
         System.out.println(number.getAndIncrement());
-        try {
-            if (!bol) {
-                System.out.println(bol);
-                bol = true;
-                Thread.sleep(10000);
+        synchronized (this) { //所有请求都阻塞在此处，第一个线程进入以后，又持者锁睡眠5秒，一旦锁解除，全部线程就同时进行
+            try {
+                if (!bol) {
+                    System.out.println(bol);
+                    bol = true;
+                    Thread.sleep(5000);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("并发数量为" + number.intValue() + ", 统计总量：" + (num++));
         }
-        System.out.println("并发数量为" + number.intValue());
     }
 
 
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
         ExecutorService pool = Executors. newCachedThreadPool();
         CountDownLatchTest1 test = new CountDownLatchTest1();
-        for (int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             pool.execute(test);
         }
     }

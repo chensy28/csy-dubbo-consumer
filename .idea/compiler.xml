@@ -9,5 +9,8 @@
         <module name="consumer_node1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring_cloud_provider" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
