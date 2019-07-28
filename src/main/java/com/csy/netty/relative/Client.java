@@ -40,8 +40,8 @@ public class Client {
 
         //buf
         //client向server端发送数据  Buffer形式
-        cf1.channel().writeAndFlush(Unpooled.copiedBuffer("hello netty".getBytes()));
-        cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world".getBytes()));
+        cf1.channel().writeAndFlush(Unpooled.copiedBuffer("hello netty from client".getBytes()));
+        cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world from client".getBytes()));
 
 
         cf1.channel().closeFuture().sync();
