@@ -11,14 +11,12 @@ import io.netty.util.ReferenceCountUtil;
  */
 // ChannelHandlerAdapter
 
-public class ClientHandler extends ChannelInboundHandlerAdapter
-{
+public class ClientHandler extends ChannelInboundHandlerAdapter {
     // ByteBuf是一个引用计数对象，这个对象必须显示地调用release()方法来释放。
     // 请记住处理器的职责是释放所有传递到处理器的引用计数对象。
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception
-    {
-        try{
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        try {
             //do something
             //接收服务端发来的数据 ByteBuf
             ByteBuf  buf = (ByteBuf)msg;
@@ -33,15 +31,14 @@ public class ClientHandler extends ChannelInboundHandlerAdapter
             //以上代码是接收服务端发来的反馈数据//
 
             ctx.close();
-        }finally{
+        } finally {
             // Discard the received data silently.
             ReferenceCountUtil.release(msg);
         }
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception
-    {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         // Close the connection when an exception is raised.
         cause.printStackTrace();
         ctx.close();
