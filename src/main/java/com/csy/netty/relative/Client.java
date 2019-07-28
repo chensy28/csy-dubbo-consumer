@@ -24,11 +24,11 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
         EventLoopGroup workgroup = new NioEventLoopGroup();
-        Bootstrap b = new Bootstrap();//客户端
+        Bootstrap b = new Bootstrap(); //客户端
         b.group(workgroup)
-                .channel(NioSocketChannel.class)//客户端 -->NioSocketChannel
+                .channel(NioSocketChannel.class)//客户端 -->NioSocketChannel，设置channel类型
                 .option(ChannelOption.SO_KEEPALIVE, true)
-                .handler(new ChannelInitializer<SocketChannel>() {//handler
+                .handler(new ChannelInitializer<SocketChannel>() { //handler
                     @Override
                     protected void initChannel(SocketChannel sc) throws Exception {
                         sc.pipeline().addLast(new ClientHandler());
@@ -40,8 +40,8 @@ public class Client {
 
         //buf
         //client向server端发送数据  Buffer形式
-        cf1.channel().writeAndFlush(Unpooled.copiedBuffer("hello netty from client".getBytes()));
-        cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world from client".getBytes()));
+        cf1.channel().writeAndFlush(Unpooled.copiedBuffer("hello netty from client port 8765".getBytes()));
+        cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world from client port 8764".getBytes()));
 
 
         cf1.channel().closeFuture().sync();

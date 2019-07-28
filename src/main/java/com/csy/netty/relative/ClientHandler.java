@@ -24,9 +24,9 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             byte[] data = new byte[buf.readableBytes()];
             //将buf中的数据读取到data数组中
             buf.readBytes(data);
-            //将data数组惊醒包装 以String格式输出
-            String response = new String(data,"utf-8");
-            System.out.println("client :"+response);
+            //将data数组进行包装 以String格式输出
+            String response = new String(data, "utf-8");
+            System.out.println("client :" + response);
 
             //以上代码是接收服务端发来的反馈数据//
 
