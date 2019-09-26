@@ -20,7 +20,7 @@ public class Client {
     /*端口号*/
     static final int PORT1 = Integer.parseInt(System.getProperty("port", "8765"));
 
-    static final int PORT2 = Integer.parseInt(System.getProperty("port", "8764"));
+    //static final int PORT2 = Integer.parseInt(System.getProperty("port", "8764"));
 
     public static void main(String[] args) throws Exception {
         EventLoopGroup workgroup = new NioEventLoopGroup();
@@ -36,16 +36,16 @@ public class Client {
                 });
         //创建异步连接 可添加多个端口
         ChannelFuture cf1 = b.connect(HOST, PORT1).sync();
-        ChannelFuture cf2 = b.connect(HOST, PORT2).sync();
+        //ChannelFuture cf2 = b.connect(HOST, PORT2).sync();
 
         //buf
         //client向server端发送数据  Buffer形式
         cf1.channel().writeAndFlush(Unpooled.copiedBuffer("hello netty from client port 8765".getBytes()));
-        cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world from client port 8764".getBytes()));
+        //cf2.channel().writeAndFlush(Unpooled.copiedBuffer("hello world from client port 8764".getBytes()));
 
 
         cf1.channel().closeFuture().sync();
-        cf2.channel().closeFuture().sync();
+        //cf2.channel().closeFuture().sync();
 
         workgroup.shutdownGracefully();
     }
